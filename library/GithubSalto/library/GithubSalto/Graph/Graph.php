@@ -37,7 +37,7 @@ class GithubSalto_Graph_Graph extends CM_Class_Abstract {
 
 		$repository = $issue->getRepository();
 		$github = $issue->getGithub();
-		preg_match_all('/depends\s+(?:on\s+)?:?(.+)\b/i', $issue->getFulltext(), $matches, PREG_SET_ORDER);
+		preg_match_all($this->_getDependencyRegexp(), $issue->getFulltext(), $matches, PREG_SET_ORDER);
 		foreach ($matches as $match) {
 			$dependencyName = (string) $match[1];
 			$dependencyIssue = null;
@@ -122,5 +122,12 @@ class GithubSalto_Graph_Graph extends CM_Class_Abstract {
 	 */
 	private function _getNextNodeId() {
 		return count($this->_nodeList) + 1;
+	}
+
+	/**
+	 * @return string
+	 */
+	private function _getDependencyRegexp() {
+		return (string) self::_getConfig()->dependencyRegexp;
 	}
 }

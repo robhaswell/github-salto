@@ -8,10 +8,15 @@ class GithubSalto_Github_Github extends CM_Class_Abstract {
 	/** @var GithubSalto_Github_Repository[] */
 	private $_repositoryList = array();
 
-	function __construct() {
+	/**
+	 * @param string|null $oauthToken
+	 */
+	function __construct($oauthToken = null) {
 		$httpClient = new Github\HttpClient\CachedHttpClient(array('cache_dir' => DIR_TMP . 'github-api-cache'));
 		$this->_client = new Github\Client($httpClient);
-		$this->_client->authenticate('njam', '', Github\Client::AUTH_HTTP_PASSWORD);
+		if (null !== $oauthToken) {
+			$this->_client->authenticate($oauthToken, null, Github\Client::AUTH_URL_TOKEN);
+		}
 	}
 
 	/**
@@ -52,5 +57,31 @@ class GithubSalto_Github_Github extends CM_Class_Abstract {
 	 */
 	public function getRepositoryList() {
 		return $this->_repositoryList;
+	}
+
+	/**
+	 * @param string        $username
+	 * @param string        $password
+	 * @param string[]|null $scopes
+	 * @param string|null   $note
+	 * @param string|null   $noteUrl
+	 * @return string
+	 */
+	public static function getOauthToken($username, $password, array $scopes = null, $note = null, $noteUrl = null) {
+		$client = new Github\Client();
+		$client->authenticate($username, $password, Github\Client::AUTH_HTTP_PASSWORD);
+		$params = array();
+		if (null !== $scopes) {
+			$params['scopes'] = $scopes;
+		}
+		if (null !== $note) {
+			$params['note'] = (string) $note;
+		}
+		if (null !== $noteUrl) {
+			$params['note_url'] = (string) $noteUrl;
+		}
+		$response = $client->getHttpClient()->post('authorizations', array('note' => $note, 'scopes' => $scopes));
+		$content = $response->getContent();
+		return (string) $content['token'];
 	}
 }
