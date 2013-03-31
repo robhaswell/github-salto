@@ -13,12 +13,8 @@ class GithubSalto_Graph_Cli extends CM_Cli_Runnable_Abstract {
 		$issueCounter = 0;
 		$issues = $repository->getIssueList();
 		foreach ($issues as $issue) {
-			$this->_getOutput()->write('Fetching issue ' . (++$issueCounter) . '/' . count($issues) . "..\r");
+//			$this->_getOutput()->write('Fetching issue ' . (++$issueCounter) . '/' . count($issues) . "..\r");
 			$graph->parseDependencies($issue);
-		}
-
-		foreach ($graph->getDependencyList() as $dependency) {
-			//			echo $dependency . PHP_EOL;
 		}
 
 		$this->_getOutput()->write($graph->getDot($repository->getLabel()));
