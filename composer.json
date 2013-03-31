@@ -1,5 +1,5 @@
 {
-	"name": "cargomedia/CM-project",
+	"name": "cargomedia/github-salto",
 	"require": {
 		"cargomedia/CM": "1.*",
 		"knplabs/github-api": "1.1.3"
