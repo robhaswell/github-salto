@@ -24,6 +24,10 @@ class GithubSalto_Graph_Cli extends CM_Cli_Runnable_Abstract {
 		$this->_getOutput()->write($graph->getDot($repository->getLabel()));
 	}
 
+	public function auth() {
+		$this->_getGithubOauthToken();
+	}
+
 	/**
 	 * @return string
 	 */
