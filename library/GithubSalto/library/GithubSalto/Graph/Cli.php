@@ -3,15 +3,15 @@
 class GithubSalto_Graph_Cli extends CM_Cli_Runnable_Abstract {
 
 	/**
-	 * @param string $repositoryUsername
+	 * @param string $userName
 	 * @param string $repositoryName
 	 */
-	public function create($repositoryUsername, $repositoryName) {
-		$repositoryUsername = (string) $repositoryUsername;
+	public function create($userName, $repositoryName) {
+		$userName = (string) $userName;
 		$repositoryName = (string) $repositoryName;
 		$oauthToken = $this->_getGithubOauthToken();
 		$github = new GithubSalto_Github_Github($oauthToken);
-		$repository = $github->getRepository($repositoryUsername, $repositoryName);
+		$repository = $github->getRepository($userName, $repositoryName);
 		$graph = new GithubSalto_Graph_Graph();
 
 		$issueCounter = 0;
