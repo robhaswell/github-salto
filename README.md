@@ -1,5 +1,5 @@
 ## Dependency tagging
-Within your issues (and comments) write something along:
+Within your issues (and comments) write something along the lines of:
 > Depends on #23
 
 This way `github-salto` will know that this issue depends on/is blocked by issue 23.
