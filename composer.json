@@ -1,12 +1,10 @@
 {
 	"name": "cargomedia/CM-project",
 	"require": {
-		"cargomedia/CM": "1.*"
+		"cargomedia/CM": "1.*",
+		"knplabs/github-api": "1.1.3"
 	},
 	"repositories": [
-		{
-			"packagist": false
-		},
 		{
 			"type": "composer",
 			"url": "http://broker.cargomedia.ch/repositories/cm"
