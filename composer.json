@@ -6,12 +6,15 @@
 	},
 	"repositories": [
 		{
-			"type": "composer",
-			"url": "http://broker.cargomedia.ch/repositories/cm"
+			"packagist": false
 		},
 		{
 			"type": "composer",
-			"url": "http://satis.cargomedia.ch/"
+			"url": "http://satis.cargomedia.ch/source"
+		},
+		{
+			"type": "composer",
+			"url": "http://satis.cargomedia.ch/dist"
 		}
 	],
 	"autoload": {
