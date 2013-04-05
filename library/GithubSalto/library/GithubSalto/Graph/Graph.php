@@ -42,7 +42,7 @@ class GithubSalto_Graph_Graph extends CM_Class_Abstract {
 			$dependencyName = (string) $match[1];
 			$dependencyIssue = null;
 			$nodeSource = $this->addNodeIssue($issue);
-			if (preg_match('#^https://github.com/(.+?)/(.+?)/(?:pull|issues)/(\d+?)$#', $dependencyName, $matches)) {
+			if (preg_match('#^https://github.com/([^/]+?)/([^/]+?)/(?:pull|issues)/(\d+?)$#', $dependencyName, $matches)) {
 				$dependencyIssue = $github->getRepository($matches[1], $matches[2])->getIssue($matches[3]);
 			} elseif (preg_match('#^(.+?)/(.+?)\#(\d+?)$#', $dependencyName, $matches)) {
 					$dependencyIssue = $github->getRepository($matches[1], $matches[2])->getIssue($matches[3]);
