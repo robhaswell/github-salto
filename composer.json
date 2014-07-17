@@ -1,5 +1,6 @@
 {
 	"name": "cargomedia/github-salto",
+    "minimum-stability": "alpha",
 	"require": {
 		"cargomedia/CM": "1.*",
 		"knplabs/github-api": "1.1.3"
